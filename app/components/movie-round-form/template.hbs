@@ -1,0 +1,26 @@
+<label>
+  <span>Movie Title</span>
+  {{input type="text" value=movieRound.title}}
+</label>
+
+<label>
+  <span>Code</span>
+  {{input type="text" value=movieRound.code}}
+</label>
+
+<label>
+  <span>Start Date</span>
+  {{input value=movieRound.startDate}}
+</label>
+
+<label>
+  <span>End Date</span>
+  {{input value=movieRound.endDate}}
+</label>
+
+<label>
+  <span>Box Office Amount</span>
+  {{input type="number" value=movieRound.boxOfficeAmount disabled=isNewRound}}
+</label>
+
+<button type="submit">Submit</button>
