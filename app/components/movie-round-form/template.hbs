@@ -1,26 +1,26 @@
 <label>
   <span>Movie Title</span>
-  {{input type="text" value=movieRound.title}}
+  {{input placeholder="e.g Spiderman" class="input-text" type="text" value=movieRound.title}}
 </label>
 
 <label>
   <span>Code</span>
-  {{input type="text" value=movieRound.code}}
+  {{input placeholder="e.g. SPIDEY" class="input-text" type="text" value=movieRound.code}}
 </label>
 
 <label>
   <span>Start Date</span>
-  {{input value=movieRound.startDate}}
+  {{input class="input-text" value=movieRound.startDate}}
 </label>
 
 <label>
   <span>End Date</span>
-  {{input value=movieRound.endDate}}
+  {{input class="input-text" value=movieRound.endDate}}
 </label>
 
 <label>
   <span>Box Office Amount</span>
-  {{input type="number" value=movieRound.boxOfficeAmount disabled=isNewRound}}
+  {{input class="input-text" type="number" value=movieRound.boxOfficeAmount disabled=isNewRound}}
 </label>
 
 <button type="submit">Submit</button>
