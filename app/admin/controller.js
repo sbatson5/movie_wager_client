@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 const {
   Controller,
+  get,
   inject: { service }
 } = Ember;
 
@@ -14,8 +15,8 @@ export default Controller.extend({
       this.get('movieRound').save().then(() => {
         flashMessages.success('Movie Round Saved');
       }).catch((error) => {
-        console.log(error);
-        flashMessages.danger('Failed');
+        let errorMessage = get(error, 'errors.firstObject.detail');
+        flashMessages.danger(`Failed: ${errorMessage}`);
       });
     }
   }

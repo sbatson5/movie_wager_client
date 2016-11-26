@@ -2,11 +2,11 @@
 //
 // This file will import all application styles
 
-@import 'base/variables';
+@import "base/variables";
 
 // routes
-@import 'routes/admin';
-@import 'routes/index';
+@import "routes/admin";
+@import "routes/index";
 
 // components
-@import 'components/flash-message'
+@import "components/flash-message";
