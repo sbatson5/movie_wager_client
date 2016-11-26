@@ -1,0 +1,32 @@
+// Class names for flash messages are applied by lib, so these do not adhere to BEM
+.alert {
+  background: $med-grey;
+  color: $white;
+  font-weight: 400;
+  height: 30px;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  transition: transform .4s; // timing defined in `environment.js`
+  top: 0;
+  width: 100%;
+  z-index: 100;
+
+  a {
+    color: inherit;
+  }
+
+  &.exiting {
+    transform: translateY(-100%);
+  }
+
+  &-danger {
+    background: $color-error;
+    color: $white;
+  }
+
+  &-success {
+    background: $mint;
+    color: $darkest-blue;
+  }
+}

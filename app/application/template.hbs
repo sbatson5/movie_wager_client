@@ -1,0 +1,7 @@
+{{#each flashMessages.queue as |flash|}}
+  {{#flash-message flash=flash}}
+    {{flash.message}}
+  {{/flash-message}}
+{{/each}}
+
+{{outlet}}
