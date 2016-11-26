@@ -6,19 +6,14 @@ moduleForComponent('movie-round-form', 'Integration | Component | movie round fo
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{movie-round-form}}`);
+  let submitAction = () => {
+    assert.ok(true, 'submit action is called');
+  };
 
-  assert.equal(this.$().text().trim(), '');
+  this.set('submitAction', submitAction);
+  this.render(hbs`{{movie-round-form submitAction=submitAction}}`);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#movie-round-form}}
-      template block text
-    {{/movie-round-form}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  let submitButton = this.$().find('button:contains("Submit")');
+  submitButton.click();
 });
