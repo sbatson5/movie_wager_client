@@ -2,10 +2,25 @@
 // --------------------
 
 $white: #fff;
-$grey: #999;
+$lightest-grey: #f6f6f6;
+$light-grey: #ddd;
+$med-grey: #999;
+$darker-grey: #585858;
+$darkest-grey: #2e2e2e;
 $black: #000;
+
+$lighter-blue: #afcfd6;
+$light-blue: #60a0ae;
+$dark-blue: #113942;
+$darkest-blue: #0a2126;
+
+$red: #f64b35;
+
+$mint: #a6ffd4;
+
+$color-error: $red;
 
 // Fonts
 // --------------------
 
-$helvetica: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$helvetica: "Helvetica Neue", "Helvetica", "Arial", sans-serif;

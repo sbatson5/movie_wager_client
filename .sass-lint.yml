@@ -1,0 +1,19 @@
+rules:
+  class-name-format:
+    - 2
+    -
+      convention: hyphenatedbem
+  quotes:
+    - 2
+    -
+      style: double
+  no-color-literals: true
+  no-duplicate-properties:
+    - 2
+    -
+      exclude:
+        - src
+  no-vendor-prefixes:
+    - 0
+  no-url-protocols: 0
+  force-element-nesting: 0
