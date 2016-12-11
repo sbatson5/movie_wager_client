@@ -1,6 +1,12 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
+const {
+  Route,
+  get,
+  inject: { service }
+} = Ember;
+
+export default Route.extend({
   queryParams: {
     oauth_token: {
       refreshModel: true
@@ -10,10 +16,11 @@ export default Ember.Route.extend({
     }
   },
 
-  ajax: Ember.inject.service(),
+  ajax: service(),
+  session: service(),
 
   model({ oauth_token, oauth_verifier}) {
-    return this.get('ajax').request('/api/v1/twitter-auth', {
+    return get(this, 'ajax').request('/api/v1/twitter-auth', {
       method: 'POST',
       data: {
         oauth_token,
@@ -22,10 +29,7 @@ export default Ember.Route.extend({
     });
   },
 
-  setupController(controller, model) {
-    console.log(model);
-    this.get('store').findRecord('user', model.user_id).then((user) => {
-      controller.set('user', user);
-    });
+  afterModel() {
+    get(this, 'session')
   }
 });
