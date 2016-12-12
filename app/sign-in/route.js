@@ -10,7 +10,7 @@ export default Ember.Route.extend({
         foo: 'bar'
       }).then((twitterAuth) => {
         window.location = twitterAuth.url;
-      })
+      });
     }
   }
 });

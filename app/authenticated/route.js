@@ -29,7 +29,11 @@ export default Route.extend({
     });
   },
 
-  afterModel() {
-    get(this, 'session')
+
+  actions: {
+    didTransition() {
+      this.send('setCurrentUser');
+      this.transitionTo('index');
+    },
   }
 });
