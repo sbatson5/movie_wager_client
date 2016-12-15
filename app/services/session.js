@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 const {
-  Service,
   RSVP: { Promise },
+  Service,
   get,
   inject: { service },
   isEmpty,

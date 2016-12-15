@@ -33,7 +33,6 @@ export default Route.extend({
     setCurrentUser() {
       let controller = get(this, 'controller');
       this._setCurrentUser(controller);
-      this.refresh();
     },
 
     logout() {

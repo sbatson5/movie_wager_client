@@ -6,8 +6,8 @@ const {
 } = DS;
 
 export default Model.extend({
-  twitterId: attr(),
   name: attr(),
+  profileImageUrl: attr(),
   screenName: attr(),
-  profileImageUrl: attr()
+  twitterId: attr()
 });

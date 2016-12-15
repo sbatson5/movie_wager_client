@@ -9,7 +9,7 @@ test('it renders user information', function(assert) {
   assert.expect(3);
   let logout = function() {
     assert.ok(true, 'logout function is called');
-  }
+  };
 
   let currentUser = {
     name: 'Anita Funnyname',
