@@ -15,8 +15,17 @@ export default Route.extend({
     this._super(...arguments);
   },
 
-  setupController(controller) {
-    this._setCurrentUser(controller);
+  model() {
+    const session = get(this, 'session');
+    return session.fetchSession().then(() => {
+      return session.getUser();
+    }).catch(() => {
+      return null;
+    });
+  },
+
+  setupController(controller, model) {
+    set(controller, 'currentUser', model);
   },
 
   _setCurrentUser(controller) {

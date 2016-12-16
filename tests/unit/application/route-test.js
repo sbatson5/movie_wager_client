@@ -23,7 +23,7 @@ test('it fetches session up initialization', function(assert) {
   });
 });
 
-test('it exists', function(assert) {
+test('setCurrentUser sets the user from the session', function(assert) {
   let route = this.subject({
     session: {
       fetchSession() {
@@ -39,7 +39,7 @@ test('it exists', function(assert) {
   });
 
   let controller = {};
-  route.setupController(controller);
+  route._setCurrentUser(controller);
 
   return wait().then(() => {
     assert.equal(controller.currentUser, 'foo', 'currentUser is set');
