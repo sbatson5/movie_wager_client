@@ -1,0 +1,23 @@
+<ul class="nav-bar__list">
+  <li class="nav-bar__item">
+    <h4>Movie Wager</h4>
+  </li>
+  <li class="nav-bar__item">
+    {{link-to "Home" "index"}}
+  </li>
+  {{#if currentUser}}
+    <li class="nav-bar__item">
+      <a href {{action "logoutUser"}}>Logout</a>
+    </li>
+  {{else}}
+    <li class="nav-bar__item">
+      {{link-to "Sign in" "sign-in"}}
+    </li>
+  {{/if}}
+</ul>
+{{#if currentUser}}
+  <div class="profile">
+    <h6>Hi, {{currentUser.name}}</h6>
+    <img src="{{currentUser.profileImageUrl}}" alt="profile image" />
+  </div>
+{{/if}}

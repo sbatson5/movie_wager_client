@@ -1,0 +1,14 @@
+.nav-bar {
+  &__list {
+    display: flex;
+    list-style: none;
+
+    h4 {
+      margin: 0;
+    }
+  }
+
+  &__item {
+    padding: 0 20px;
+  }
+}
