@@ -1,0 +1,11 @@
+<section class="form-container">
+  <h2 class="form-header">You're betting on: {{wager.movieRound.title}}</h2>
+  <form class="movie-round-form">
+    <label>
+      <span>Amount</span>
+      {{input class="input-text" type="number" value=wager.amount}}
+    </label>
+
+    <button type="submit" {{action (route-action "placeWager")}}>Submit</button>
+  </form>
+</section>
