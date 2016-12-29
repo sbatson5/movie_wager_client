@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 const {
   Route,
-  RSVP,
   get,
   inject: { service },
   set
@@ -42,20 +41,5 @@ export default Route.extend({
     let user = get(this, 'session').getUser();
     let user_id = get(user, 'id');
     return get(this, 'store').query('wager', { user_id, movie_round_id });
-  },
-
-  actions: {
-    placeWager() {
-      let wager = get(this, 'controller.wager');
-      let title = get(this, 'controller.wager.movieRound.title');
-      let flashMessages = get(this, 'flashMessages');
-
-      wager.save().then(() => {
-        let amount = get(wager, 'amount');
-        flashMessages.success(`Bet placed for ${title} at ${amount}`);
-      }).catch(() => {
-        flashMessages.danger('Unable to place your bet. Please try again!');
-      });
-    }
   }
 });
