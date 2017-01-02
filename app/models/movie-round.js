@@ -2,7 +2,8 @@ import DS from 'ember-data';
 
 const {
   Model,
-  attr
+  attr,
+  belongsTo
 } = DS;
 
 export default Model.extend({
@@ -10,5 +11,6 @@ export default Model.extend({
   startDate: attr('date'),
   endDate: attr('date'),
   boxOfficeAmount: attr('number'),
-  title: attr('string')
+  title: attr('string'),
+  movieDetail: belongsTo('movieDetail')
 });
