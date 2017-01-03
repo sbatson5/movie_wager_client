@@ -7,7 +7,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('admin');
+  this.route('admin', function() {
+    this.route('edit-round', { path: 'edit-round/:movie_round_id' });
+  });
   this.route('authenticated');
   this.route('sign-in');
   this.route('wager', { path: 'wager/:movie_round_id' });
