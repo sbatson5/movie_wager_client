@@ -1,0 +1,21 @@
+.login-page {
+  h1, h3 {
+    font-family: $bangers;
+    font-size: 50px;
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  p {
+    font-family: $molengo;
+    font-size: 25px;
+    justify-content: center;
+    margin: 30px auto;
+    text-align: center;
+    width: 50%;
+  }
+}

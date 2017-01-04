@@ -1,3 +1,18 @@
+<section class="splash-image">
+  <div class="greeting">
+    <div class="greeting__container">
+      <h1 class="greeting__title">Movie Wager</h1>
+      {{#if username}}
+        <h3 class="greeting__welcome">Hi, {{username}}</h3>
+      {{/if}}
+      <p class="greeting__description">
+        The game is simple: predict how much a movie will make in the box office
+        on its opening weekend. Then check back on Monday to see if you won!
+      </p>
+    </div>
+  </div>
+</section>
+
 <h1>Movie Wager</h1>
 {{#each model as |movieRound|}}
   <h2 class="movie-title">{{movieRound.title}}</h2>

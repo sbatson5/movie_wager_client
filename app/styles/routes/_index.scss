@@ -4,3 +4,38 @@
   font-family: $helvetica;
   font-size: 35px;
 }
+
+.splash-image {
+  background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url("/images/movie-bg.jpg") no-repeat;
+  background-size: cover;
+  display: flex;
+  height: 500px;
+  width: 100%;
+
+  .greeting {
+    align-items: center;
+    color: $white;
+    display: flex;
+    font-family: $bangers;
+    justify-content: center;
+    letter-spacing: 3px;
+    text-align: center;
+    width: 100%;
+
+    &__title {
+      font-size: 75px;
+    }
+
+    &__welcome {
+      font-size: 35px;
+    }
+
+    &__description {
+      font-family: $molengo;
+      font-size: 25px;
+      justify-content: center;
+      margin: 0 auto;
+      width: 50%;
+    }
+  }
+}
