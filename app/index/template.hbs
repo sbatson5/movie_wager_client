@@ -1,4 +1,6 @@
 <h1>Movie Wager</h1>
 {{#each model as |movieRound|}}
-  {{link-to movieRound.title "wager" movieRound.id class="movie-title"}}
+  <h2 class="movie-title">{{movieRound.title}}</h2>
+  {{link-to "Place a bet" "wager" movieRound.id}}
+  {{link-to "View current bets" "round" movieRound.id}}
 {{/each}}
