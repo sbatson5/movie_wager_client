@@ -1,12 +1,11 @@
 .movie-title {
-  color: $med-grey;
   display: block;
-  font-family: $helvetica;
+  font-family: $bangers;
   font-size: 35px;
 }
 
 .splash-image {
-  background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url("/images/movie-bg.jpg") no-repeat;
+  background: linear-gradient($black-transparent, $black-transparent), url("/images/movie-bg.jpg") no-repeat;
   background-size: cover;
   display: flex;
   height: 500px;
@@ -18,16 +17,17 @@
     display: flex;
     font-family: $bangers;
     justify-content: center;
-    letter-spacing: 3px;
     text-align: center;
     width: 100%;
 
     &__title {
       font-size: 75px;
+      letter-spacing: 10px;
     }
 
     &__welcome {
       font-size: 35px;
+      letter-spacing: 10px;
     }
 
     &__description {
@@ -37,5 +37,28 @@
       margin: 0 auto;
       width: 50%;
     }
+  }
+}
+
+.link-wrapper {
+  display: flex;
+  margin: 0 auto;
+  width: 50%;
+
+  .wager-links {
+    background-color: $light-blue;
+    border: 0;
+    border-radius: 2px;
+    color: $white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $molengo;
+    font-size: 20px;
+    font-style: normal;
+    margin: 10px auto;
+    padding: 19px 0;
+    text-align: center;
+    text-decoration: none;
+    width: 45%;
   }
 }

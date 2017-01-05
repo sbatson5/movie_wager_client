@@ -1,15 +1,20 @@
-<h1>Viewing wagers for {{movieRound.title}}</h1>
+<section class="form-container page-wrapper">
+  <h2 class="form-header">Viewing wagers for</h2>
+  <h1>{{movieRound.title}}</h1>
 
-{{#if movieRound.boxOfficeAmount}}
-  <h2>Final amount: {{format-currency movieRound.boxOfficeAmount}}</h2>
-  <h3>Top finishers:</h3>
-{{/if}}
+  {{#if movieRound.boxOfficeAmount}}
+    <h2 class="form-header">Final amount: {{format-currency movieRound.boxOfficeAmount}}</h2>
+    <h3>Top finishers:</h3>
+  {{/if}}
 
-{{#each wagers as |wager|}}
-  <div>
-    {{#if wager.place}}
-      {{wager.place}}.
-    {{/if}}
-    {{format-currency wager.amount}} by {{wager.user.name}}
+  <div class="wager-wrapper">
+    {{#each wagers as |wager|}}
+      <div class="wager">
+        {{#if wager.place}}
+          {{wager.place}}.
+        {{/if}}
+        {{format-currency wager.amount}} by {{wager.user.name}}
+      </div>
+    {{/each}}
   </div>
-{{/each}}
+</section>

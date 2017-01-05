@@ -13,9 +13,16 @@
   </div>
 </section>
 
-<h1>Movie Wager</h1>
-{{#each model as |movieRound|}}
-  <h2 class="movie-title">{{movieRound.title}}</h2>
-  {{link-to "Place a bet" "wager" movieRound.id}}
-  {{link-to "View current bets" "round" movieRound.id}}
-{{/each}}
+<section class="page-wrapper">
+  {{#each model as |movieRound|}}
+    <h1 class="movie-title">{{movieRound.title}}</h1>
+    <div class="link-wrapper">
+      {{#link-to "wager" movieRound.id class="wager-links"}}
+        {{fa-icon "usd"}} - Place a bet
+      {{/link-to}}
+      {{#link-to "round" movieRound.id class="wager-links"}}
+        {{fa-icon "bar-chart"}} - View current bets
+      {{/link-to}}
+    </div>
+  {{/each}}
+</section>

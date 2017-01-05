@@ -1,12 +1,12 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('controller:index', 'Unit | Controller | index', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
-});
+moduleFor('controller:index', 'Unit | Controller | index');
 
-// Replace this with your real tests.
-test('it exists', function(assert) {
-  let controller = this.subject();
-  assert.ok(controller);
+test('username is properly set', function(assert) {
+  let controller = this.subject({
+    application: {
+      currentUser: { name: 'foo' }
+    }
+  });
+  assert.equal(controller.get('username'), 'foo');
 });

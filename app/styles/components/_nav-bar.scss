@@ -1,5 +1,6 @@
 .nav-bar {
   background-color: $white;
+  box-shadow: 0 2px 20px $darkest-grey;
   left: 0;
   position: fixed;
   top: 0;
@@ -15,7 +16,7 @@
   }
 
   &__item {
-    font-family: "Molengo", sans-serif;
+    font-family: $molengo;
     padding: 0 20px;
 
     a {
