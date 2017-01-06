@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('sign-in');
   this.route('wager', { path: 'wager/:movie_round_id' });
   this.route('round', { path: 'round/:movie_round_id' });
+  this.route('leaderboard');
 });
 
 export default Router;
