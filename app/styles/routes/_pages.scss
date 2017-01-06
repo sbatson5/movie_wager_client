@@ -1,0 +1,27 @@
+.page-wrapper {
+  h1,
+  h3 {
+    font-family: $bangers;
+    font-size: 50px;
+    letter-spacing: 5px;
+    text-align: center;
+  }
+
+  h2 {
+    font-family: $molengo;
+    font-size: 35px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  p {
+    font-family: $molengo;
+    font-size: 25px;
+    justify-content: center;
+    margin: 30px auto;
+    text-align: center;
+    width: 50%;
+  }
+}

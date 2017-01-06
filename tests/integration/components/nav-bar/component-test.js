@@ -6,7 +6,7 @@ moduleForComponent('nav-bar', 'Integration | Component | nav bar', {
 });
 
 test('it renders user information', function(assert) {
-  assert.expect(3);
+  assert.expect(2);
   let logout = function() {
     assert.ok(true, 'logout function is called');
   };
@@ -23,8 +23,6 @@ test('it renders user information', function(assert) {
 
   assert.ok(this.$().find('a:contains("Logout")').length, 'logout link is shown');
   this.$().find('a:contains("Logout")').click();
-  let greeting = this.$().find('h6', '.profile').text().trim();
-  assert.equal(greeting, 'Hi, Anita Funnyname', 'name is displayed');
 });
 
 test('it renders sign in link without user', function(assert) {

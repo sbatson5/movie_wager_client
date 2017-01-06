@@ -6,7 +6,10 @@
 
 // routes
 @import "routes/admin";
+@import "routes/application";
 @import "routes/index";
+@import "routes/pages";
+@import "routes/round";
 
 // components
 @import "components/flash-message";
