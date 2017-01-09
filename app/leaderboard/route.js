@@ -2,7 +2,8 @@ import Ember from 'ember';
 
 const {
   Route,
-  get
+  get,
+  set
 } = Ember;
 
 export default Route.extend({
@@ -11,6 +12,6 @@ export default Route.extend({
   },
 
   setupController(controller, model) {
-    controller.set('wagers', model);
+    set(controller, 'wagers', model);
   }
 });

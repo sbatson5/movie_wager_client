@@ -11,7 +11,6 @@ const {
 export default Controller.extend({
   userList: mapBy('wagers', 'user'),
 
-
   groupedUsers: computed('userList.@each.name', function() {
     let users = get(this, 'userList');
     let collection = [];
