@@ -1,0 +1,12 @@
+<section class="page-wrapper">
+  <h1>Leaderboard</h1>
+  <div class="leaderboard">
+    {{#each groupedUsers as |user|}}
+      <div>
+        <img src={{user.profileImageUrl}} />
+        <span>{{user.name}}</span>
+        <span class="leaderboard__count">{{user.count}}</span>
+      </div>
+    {{/each}}
+  </div>
+</section>

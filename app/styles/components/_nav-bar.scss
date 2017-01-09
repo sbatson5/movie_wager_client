@@ -1,6 +1,5 @@
 .nav-bar {
   background-color: $white;
-  box-shadow: 0 2px 20px $darkest-grey;
   left: 0;
   position: fixed;
   top: 0;
@@ -25,4 +24,8 @@
       text-decoration: none;
     }
   }
+}
+
+.box-shadow {
+  box-shadow: 0 2px 20px $darkest-grey;
 }
