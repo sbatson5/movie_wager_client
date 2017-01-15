@@ -1,13 +1,13 @@
 import Ember from 'ember';
+import AuthenticatedRoute from 'movie-wager-client/routes/authenticated';
 
 const {
-  Route,
   get,
   inject: { service },
   set
 } = Ember;
 
-export default Route.extend({
+export default AuthenticatedRoute.extend({
   flashMessages: service(),
   session: service(),
 
