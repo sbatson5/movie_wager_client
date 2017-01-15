@@ -6,6 +6,7 @@ const {
   get,
   inject: { service },
   isEmpty,
+  isPresent,
   set
 } = Ember;
 
@@ -38,6 +39,10 @@ export default Service.extend({
       this.fetchSession();
     }
     return get(this, 'currentUser');
+  },
+
+  isAuthenticated() {
+    return isPresent(this.getUser());
   },
 
   _loadUser(payload) {

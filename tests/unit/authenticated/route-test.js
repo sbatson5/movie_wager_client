@@ -1,11 +1,19 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:authenticated', 'Unit | Route | authenticated', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
-});
+moduleFor('route:authenticated', 'Unit | Route | authenticated');
 
-test('it exists', function(assert) {
-  let route = this.subject();
-  assert.ok(route);
+test('it redirects when not logged in', function(assert) {
+  let sessionStub = {
+    isAuthenticated() {
+      return false;
+    }
+  };
+  let route = this.subject({
+    transitionTo(route) {
+      assert.equal(route, 'sign-in', 'user is redirected');
+    },
+    session: sessionStub
+  });
+
+  route.beforeModel();
 });
