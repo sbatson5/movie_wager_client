@@ -6,7 +6,8 @@ export default Ember.Route.extend({
   actions: {
     signIn() {
       this.get('ajax').request('/api/v1/twitter-auth', {
-        method: 'POST'
+        method: 'POST',
+        data: { foo: 'bar'}
       }).then((twitterAuth) => {
         window.location = twitterAuth.url;
       });

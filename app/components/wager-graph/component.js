@@ -3,6 +3,7 @@ import Ember from 'ember';
 const {
   Component,
   computed,
+  computed: { mapBy },
   get,
   set
 } = Ember;
@@ -22,9 +23,11 @@ export default Component.extend({
     let ctx = canvas.getContext('2d');
     set(this, 'canvas', canvas);
     set(this, 'ctx', ctx);
-    this.drawLine(ctx, 450, '#000');
-    this.drawLine(ctx, 250, '#0aB0dE');
+    this.drawLine(ctx, 450, '#1BB0CE');
+    this.drawLine(ctx, 250, '#6A5E72');
   },
+
+  amounts: mapBy('wagers', 'amount'),
 
   orderedWagers: computed('wagers.@each', function() {
     return get(this, 'wagers').sortBy('amount');
