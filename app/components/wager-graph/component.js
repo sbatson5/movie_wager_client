@@ -9,6 +9,7 @@ const {
 } = Ember;
 
 const CHART_SIZE = 700;
+const VERTICAL_OFFSET = 100;
 
 export default Component.extend({
   tagName: 'canvas',
@@ -36,6 +37,7 @@ export default Component.extend({
 
     let winRanges = this._drawChart(chartRange);
     this._drawRangeSteps(ctx, winRanges, chartRange);
+    this.drawVerticalLine(ctx, '#1BB0CE');
   },
 
   amounts: mapBy('wagers', 'amount'),
@@ -51,7 +53,7 @@ export default Component.extend({
     return lastWager - firstWager;
   }),
 
-  drawLine(ctx, width, color) {
+  drawHorizontalLine(ctx, width, color) {
     let lastUsedPixel = get(this, 'lastUsedPixel');
     let endPoint = lastUsedPixel + width;
     set(this, 'lastUsedPixel', endPoint);
@@ -59,9 +61,25 @@ export default Component.extend({
     ctx.strokeStyle = color;
     ctx.lineWidth = 20;
     ctx.beginPath();
-    ctx.moveTo(lastUsedPixel, 50);
-    ctx.lineTo(endPoint, 50);
+    ctx.moveTo(lastUsedPixel, VERTICAL_OFFSET);
+    ctx.lineTo(endPoint, VERTICAL_OFFSET);
     ctx.stroke();
+  },
+
+  drawVerticalLine(ctx, color) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 10;
+    ctx.beginPath();
+    ctx.moveTo(200, VERTICAL_OFFSET);
+    ctx.lineTo(200, 20);
+    // ctx.stroke();
+    this.drawAvatars(ctx);
+  },
+
+  drawAvatars(ctx, winRanges) {
+    ctx.rect(180, 20, 40, 40);
+    ctx.stroke();
+    ctx.fill();
   },
 
   determineTotalRange(finalAmount) {
@@ -90,10 +108,8 @@ export default Component.extend({
         winningRange = (nextAmount - amount) / 2;
         previousRange = winningRange;
       }
-
       return winningRange;
     });
-
   },
 
   _drawRangeSteps(ctx, winRanges, chartRange) {
@@ -103,7 +119,7 @@ export default Component.extend({
       let drawRange = winningRange / chartRange;
       let drawPixel = Math.floor(CHART_SIZE * drawRange);
 
-      this.drawLine(ctx, drawPixel, colors[index]);
+      this.drawHorizontalLine(ctx, drawPixel, colors[index]);
     });
   }
 });
