@@ -10,10 +10,13 @@ const {
 
 const CHART_SIZE = 700;
 const VERTICAL_OFFSET = 100;
+const COLORS = ['#1BB0CE', '#6A5E72'];
 
 export default Component.extend({
   tagName: 'canvas',
   attributeBindings: ['width'],
+
+  pixelObjects: null,
 
   ctx: null,
   canvas: null,
@@ -26,6 +29,7 @@ export default Component.extend({
   chartEndingPoint: 0,
 
   didInsertElement() {
+    set(this, 'pixelObjects', []); // create a new array since it will be kept in memory otherwise
     let canvas = get(this, 'element');
     let ctx = canvas.getContext('2d');
     let finalAmount = get(this, 'finalAmount');
@@ -37,10 +41,14 @@ export default Component.extend({
 
     let winRanges = this._drawChart(chartRange);
     this._drawRangeSteps(ctx, winRanges, chartRange);
-    this.drawVerticalLine(ctx, '#1BB0CE');
+
+    let pixelObjects = get(this, 'pixelObjects');
+    let userImages = get(this, 'userImages');
+    this.drawUserImageTree(ctx, pixelObjects, COLORS, userImages);
   },
 
   amounts: mapBy('wagers', 'amount'),
+  userImages: mapBy('orderedWagers', 'user.profileImageUrl'),
   orderedAmounts: mapBy('orderedWagers', 'amount'),
 
   orderedWagers: computed('wagers.@each.amount', function() {
@@ -58,6 +66,9 @@ export default Component.extend({
     let endPoint = lastUsedPixel + width;
     set(this, 'lastUsedPixel', endPoint);
 
+    // we track the pixels for drawing avatars later
+    this._trackPixels(lastUsedPixel, endPoint);
+
     ctx.strokeStyle = color;
     ctx.lineWidth = 20;
     ctx.beginPath();
@@ -66,20 +77,39 @@ export default Component.extend({
     ctx.stroke();
   },
 
-  drawVerticalLine(ctx, color) {
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 10;
-    ctx.beginPath();
-    ctx.moveTo(200, VERTICAL_OFFSET);
-    ctx.lineTo(200, 20);
-    // ctx.stroke();
-    this.drawAvatars(ctx);
+  drawUserImageTree(ctx, pixelObjects, colors, userImages) {
+    let color = colors[0];
+
+    pixelObjects.forEach((pixelObject, index) => {
+      let { startingPoint, endingPoint } = pixelObject;
+      let xOffset = ((endingPoint - startingPoint) / 2) + startingPoint;
+      let color = colors[index];
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 5;
+      let image = userImages[index] || 'http://abs.twimg.com/sticky/default_profile_images/default_profile_3_normal.png';
+      this.drawVerticalLine(ctx, color, xOffset);
+      this.drawAvatars(ctx, xOffset, image);
+
+      ctx.stroke();
+    });
   },
 
-  drawAvatars(ctx, winRanges) {
-    ctx.rect(180, 20, 40, 40);
-    ctx.stroke();
-    ctx.fill();
+  drawVerticalLine(ctx, color, xOffset) {
+    ctx.beginPath();
+    ctx.moveTo(xOffset, VERTICAL_OFFSET);
+    ctx.lineTo(xOffset, 20);
+  },
+
+  drawAvatars(ctx, xOffset, userImage) {
+    let imageWidth = 48;
+    let xPosition = xOffset - (imageWidth / 2);
+    let yPosition = 12;
+    ctx.rect(xPosition, yPosition, imageWidth, imageWidth);
+    let profileImage = new Image();
+    profileImage.src = userImage;
+    profileImage.onload = function() {
+      ctx.drawImage(profileImage, xPosition, yPosition, imageWidth, imageWidth);
+    }
   },
 
   determineTotalRange(finalAmount) {
@@ -113,13 +143,17 @@ export default Component.extend({
   },
 
   _drawRangeSteps(ctx, winRanges, chartRange) {
-    let colors = ['#1BB0CE', '#6A5E72']; // do this better
-
     winRanges.forEach((winningRange, index) => {
       let drawRange = winningRange / chartRange;
       let drawPixel = Math.floor(CHART_SIZE * drawRange);
 
-      this.drawHorizontalLine(ctx, drawPixel, colors[index]);
+      this.drawHorizontalLine(ctx, drawPixel, COLORS[index]);
     });
+  },
+
+  _trackPixels(startingPoint, endingPoint) {
+    let pixelObjects = get(this, 'pixelObjects');
+
+    pixelObjects.push({ startingPoint, endingPoint });
   }
 });
