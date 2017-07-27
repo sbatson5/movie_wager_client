@@ -10,7 +10,7 @@ const {
 
 const CHART_SIZE = 700;
 const VERTICAL_OFFSET = 100;
-const COLORS = ['#1BB0CE', '#6A5E72'];
+const COLORS = ['#1BB0CE', '#6A5E72', '#4F8699', '#563444'];
 
 export default Component.extend({
   tagName: 'canvas',
@@ -42,9 +42,9 @@ export default Component.extend({
     let winRanges = this._drawChart(chartRange);
     this._drawRangeSteps(ctx, winRanges, chartRange);
 
-    let pixelObjects = get(this, 'pixelObjects');
+    let wagerPixelCollection = get(this, 'wagerPixelCollection');
     let userImages = get(this, 'userImages');
-    this.drawUserImageTree(ctx, pixelObjects, COLORS, userImages);
+    this.drawUserImageTree(ctx, wagerPixelCollection, COLORS, userImages);
   },
 
   amounts: mapBy('wagers', 'amount'),
@@ -61,8 +61,21 @@ export default Component.extend({
     return lastWager - firstWager;
   }),
 
+  wagerPixelCollection: computed('amounts', 'pixelObjects.@each.startingPoint', function() {
+    let amounts = get(this, 'amounts').sort();
+    let pixelCollection = [];
+    get(this, 'pixelObjects').forEach((pixelObject, index) => {
+      set(pixelObject, 'amount', amounts[index]);
+      pixelCollection.push(pixelObject);
+    });
+
+    console.log(pixelCollection);
+    return pixelCollection;
+  }),
+
   drawHorizontalLine(ctx, width, color) {
     let lastUsedPixel = get(this, 'lastUsedPixel');
+    console.log('width', width);
     let endPoint = lastUsedPixel + width;
     set(this, 'lastUsedPixel', endPoint);
 
@@ -77,12 +90,13 @@ export default Component.extend({
     ctx.stroke();
   },
 
-  drawUserImageTree(ctx, pixelObjects, colors, userImages) {
+  drawUserImageTree(ctx, wagerPixelCollection, colors, userImages) {
     let color = colors[0];
 
-    pixelObjects.forEach((pixelObject, index) => {
-      let { startingPoint, endingPoint } = pixelObject;
-      let xOffset = ((endingPoint - startingPoint) / 2) + startingPoint;
+    wagerPixelCollection.forEach((pixelObject, index) => {
+      let { startingPoint, amount, endingPoint } = pixelObject;
+      // let xOffset = ((endingPoint - startingPoint) / 2) + startingPoint;
+      let xOffset = this._calculatOffset(amount);
       let color = colors[index];
       ctx.strokeStyle = color;
       ctx.lineWidth = 5;
@@ -92,6 +106,16 @@ export default Component.extend({
 
       ctx.stroke();
     });
+  },
+
+  _calculatOffset(amount) {
+    let chartStartingPoint = get(this, 'chartStartingPoint');
+    let chartRange = get(this, 'chartRange');
+    console.log(chartRange);
+
+    let relativeAmount = amount - chartStartingPoint;
+    let relativePercentage = relativeAmount / chartRange;
+    return Math.floor(CHART_SIZE * relativePercentage);
   },
 
   drawVerticalLine(ctx, color, xOffset) {
@@ -125,19 +149,22 @@ export default Component.extend({
 
   _drawChart(chartRange) {
     // Let's assume 700px chart for now
-    let previousRange = 0;
     let orderedAmounts = get(this, 'orderedAmounts');
+    let remainingRange = chartRange;
+    let chartStartingPoint = get(this, 'chartStartingPoint');
+
     return orderedAmounts.map((amount, index) => {
       let nextAmount = orderedAmounts[index + 1];
       let winningRange;
 
       if (typeof nextAmount === 'undefined') {
         // if there is no next amount, then just draw until the end
-        winningRange = chartRange - previousRange;
+        winningRange = remainingRange;
       } else {
         winningRange = (nextAmount - amount) / 2;
-        previousRange = winningRange;
+        remainingRange -= winningRange;
       }
+      console.log(amount, nextAmount, winningRange, remainingRange);
       return winningRange;
     });
   },
