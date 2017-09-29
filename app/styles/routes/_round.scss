@@ -7,3 +7,12 @@
     width: 50%;
   }
 }
+
+.chart-wrapper {
+  margin: 0 auto;
+  width: 700px;
+
+  .movie-chart {
+    overflow: visible;
+  }
+}
