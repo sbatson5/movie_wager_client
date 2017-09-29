@@ -4,7 +4,9 @@ import wait from 'ember-test-helpers/wait';
 
 const { RSVP: { Promise }} = Ember;
 
-moduleFor('service:session', 'Unit | Service | session');
+moduleFor('service:session', 'Unit | Service | session', {
+  needs: ['service:ajax']
+});
 
 const ajaxStub = {
   request() {
