@@ -1,6 +1,8 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:round', 'Unit | Route | round');
+moduleFor('route:round', 'Unit | Route | round', {
+  needs: ['service:flash-messages']
+});
 
 test('it properly sets up the controller', function(assert) {
   let route = this.subject();

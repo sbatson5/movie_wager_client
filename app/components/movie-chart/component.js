@@ -42,7 +42,6 @@ export default Component.extend({
     let amounts = wagers.mapBy('amount');
     let chartStartingPoint = get(this, 'chartStartingPoint');
     let collection = [];
-    let remainingRange = get(this, 'chartRange');
     let startingPixelPoint = 0;
 
     wagers.forEach((wager, index) => {
@@ -59,7 +58,6 @@ export default Component.extend({
       } else {
         winningRange = ((amount - previousAmount) / 2) + (nextAmount - amount) / 2;
       }
-      remainingRange -= winningRange;
 
       let pixelRange = this.getRelativePixel(winningRange, chartRange);
       // add 3 to compensate for thickness of line

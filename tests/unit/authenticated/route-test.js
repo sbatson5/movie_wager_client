@@ -1,6 +1,8 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:authenticated', 'Unit | Route | authenticated');
+moduleFor('route:authenticated', 'Unit | Route | authenticated', {
+  needs: ['service:session']
+});
 
 test('it redirects when not logged in', function(assert) {
   let sessionStub = {

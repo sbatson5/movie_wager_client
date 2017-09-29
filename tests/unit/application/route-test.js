@@ -6,7 +6,9 @@ const {
   RSVP: { Promise }
 } = Ember;
 
-moduleFor('route:application', 'Unit | Route | application');
+moduleFor('route:application', 'Unit | Route | application', {
+  needs: ['service:session']
+});
 
 test('it fetches session up initialization', function(assert) {
   assert.expect(1);

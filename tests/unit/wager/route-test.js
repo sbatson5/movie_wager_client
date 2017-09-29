@@ -1,7 +1,9 @@
 import { moduleFor, test } from 'ember-qunit';
 import Ember from 'ember';
 
-moduleFor('route:wager', 'Unit | Route | wager');
+moduleFor('route:wager', 'Unit | Route | wager', {
+  needs: ['service:flash-messages', 'service:session']
+});
 
 function getPreviousStub(movie_round_id) {
   return new Ember.RSVP.Promise((resolve) => {
