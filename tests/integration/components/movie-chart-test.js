@@ -53,3 +53,14 @@ test('it renders', function(assert) {
   assert.equal(this.$('.vertical-wager-line:eq(1)').attr('x1'), '448', 'second vertical line marks wager spot');
   assert.equal(this.$('.vertical-wager-line:eq(2)').attr('x1'), '692', 'third vertical line marks wager spot');
 });
+
+test('it hides chart with 1 or fewer wagers', function(assert) {
+  this.set('wagers', [{ foo: 'bar '}]);
+  this.render(hbs`
+    {{#movie-chart wagers=wagers}}
+      <h4>Not enough</h4>
+    {{/movie-chart}}
+  `);
+
+  assert.equal(this.$().text().trim(), 'Not enough', 'chart is hidden');
+});

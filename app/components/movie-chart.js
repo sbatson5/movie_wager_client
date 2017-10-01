@@ -3,6 +3,7 @@ import Ember from 'ember';
 const {
   Component,
   computed,
+  computed: { lte },
   get
 } = Ember;
 
@@ -14,6 +15,7 @@ export default Component.extend({
   classNames: ['chart-wrapper'],
   finalAmount: null,
   wagers: null,
+  notEnoughWagers: lte('wagers.length', 1),
 
   chartStartingPoint: computed('sortedAmounts.[]', function() {
     return get(this, 'sortedAmounts.firstObject');
