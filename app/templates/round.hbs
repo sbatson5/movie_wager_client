@@ -18,5 +18,7 @@
     {{/each}}
   </div>
 
-  {{movie-chart wagers=wagers finalAmount=movieRound.boxOfficeAmount}}
+  {{#movie-chart wagers=wagers finalAmount=movieRound.boxOfficeAmount}}
+    <h4>There aren't enough wagers to show the chart yet.</h4>
+  {{/movie-chart}}
 </section>
