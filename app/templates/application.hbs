@@ -1,5 +1,11 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+{{#each flashMessages.queue as |flash|}}
+  {{#flash-message flash=flash}}
+    {{flash.message}}
+  {{/flash-message}}
+{{/each}}
 
-{{outlet}}
+{{nav-bar currentUser=currentUser logout=(route-action "logout")}}
+
+<div class="body-wrapper">
+  {{outlet}}
+</div>
