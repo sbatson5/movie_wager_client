@@ -25,7 +25,8 @@ export default Component.extend({
   y1: computed('amount', function() {
     let amount = get(this, 'amount');
     let halfStrokeWidth = get(this, 'stroke-width') / 2;
-    return get(this, 'startingYPosition') + halfStrokeWidth;
+    let position = get(this, 'startingYPosition') + halfStrokeWidth;
+    return position > 700 ? 700 : position;
   }),
 
   y2: alias('y1')
