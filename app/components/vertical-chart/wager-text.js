@@ -15,6 +15,6 @@ export default Component.extend({
   }),
   y: computed('amount', function() {
     let amount = get(this, 'amount');
-    return get(this, 'getRelativePixel')(amount) + 40;
+    return get(this, 'startingYPosition') + 40;
   })
 });

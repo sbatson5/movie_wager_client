@@ -32,13 +32,5 @@ export default Component.extend({
 
   chartRange: computed('chartStartingPoint', 'chartEndingPoint', function() {
     return get(this, 'chartEndingPoint') - get(this, 'chartStartingPoint');
-  }),
-
-  actions: {
-    getRelativePixel(amount) {
-      let chartStartingPoint = get(this, 'chartStartingPoint');
-      let relativePercentage = (amount - chartStartingPoint) / get(this, 'chartRange');
-      return Math.floor(CHART_HEIGHT * relativePercentage);
-    }
-  }
+  })
 });

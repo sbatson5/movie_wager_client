@@ -1,20 +1,12 @@
 <svg class="movie-chart" width="700" height="700" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <line x1="350" y1="0" x2="350" y2="700" stroke-width="10" stroke="#e4e6e7" />
   {{#each wagers as |wager index|}}
-    {{vertical-movie-chart-marker
+    {{vertical-chart/content-wrapper
       amount=wager.amount
+      chartStartingPoint=chartStartingPoint
+      chartRange=chartRange
+      chartHeight=700
       index=index
-      getRelativePixel=(action "getRelativePixel")}}
-    {{vertical-movie-chart-profile-bubble
-      amount=wager.amount
-      index=index
-      userImage=wager.user.profileImageUrl
-      getRelativePixel=(action "getRelativePixel")}}
-    {{#vertical-movie-chart-text
-      amount=wager.amount
-      index=index
-      getRelativePixel=(action "getRelativePixel")}}
-      {{format-currency wager.amount}}
-    {{/vertical-movie-chart-text}}
+      userImage=wager.user.profileImageUrl}}
   {{/each}}
 </svg>

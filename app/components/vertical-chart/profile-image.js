@@ -17,7 +17,7 @@ export default Component.extend({
   y: computed('amount', function() {
     let amount = get(this, 'amount');
     let halfHeight = get(this, 'height') / 2;
-    return get(this, 'getRelativePixel')(amount) - halfHeight;
+    return get(this, 'startingYPosition') - halfHeight;
   }),
   href: alias('userImage'),
   height: 48,
