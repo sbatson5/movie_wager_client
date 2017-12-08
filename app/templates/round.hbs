@@ -18,6 +18,9 @@
     {{/each}}
   </div>
 
-  {{!-- {{movie-chart wagers=wagers finalAmount=movieRound.boxOfficeAmount}} --}}
-  {{vertical-movie-chart wagers=sortedWagers finalAmount=movieRound.boxOfficeAmount}}
+  {{#if notEnoughWagers}}
+    <h2>Not enough wagers to display chart</h2>
+  {{else}}
+    {{vertical-movie-chart wagers=sortedWagers finalAmount=movieRound.boxOfficeAmount}}
+  {{/if}}
 </section>
