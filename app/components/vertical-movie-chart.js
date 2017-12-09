@@ -6,8 +6,6 @@ const {
   get
 } = Ember;
 
-const CHART_HEIGHT = 700;
-
 export default Component.extend({
   classNames: ['chart-wrapper'],
   finalAmount: null,
@@ -21,7 +19,7 @@ export default Component.extend({
     return get(this, 'sortedAmounts.lastObject');
   }),
 
-  sortedAmounts: computed('wagers.[]', function() {
+  sortedAmounts: computed('wagers.@each.amount', 'finalAmount', function() {
     let finalAmount = get(this, 'finalAmount');
     let allAmounts = get(this, 'wagers').mapBy('amount');
     if (finalAmount) {

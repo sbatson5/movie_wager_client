@@ -6,9 +6,9 @@ const {
   get
 } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: '',
-  startingYPosition: computed('chartStartingPoint', 'chartRange', 'amount', function() {
+  startingYPosition: computed('chartStartingPoint', 'chartRange', 'amount', 'chartHeight', function() {
     let amount = get(this, 'amount');
     let chartStartingPoint = get(this, 'chartStartingPoint');
     let relativePercentage = (amount - chartStartingPoint) / get(this, 'chartRange');

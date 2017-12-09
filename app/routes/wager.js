@@ -1,22 +1,23 @@
 import Ember from 'ember';
-import AuthenticatedRoute from 'movie-wager-client/routes/authenticated';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 const {
+  Route,
   get,
   inject: { service },
   set
 } = Ember;
 
-export default AuthenticatedRoute.extend({
+export default Route.extend(AuthenticatedRouteMixin, {
   flashMessages: service(),
   session: service(),
 
-  model({ movie_round_id }) {
-    return this._getPreviousWagers(movie_round_id).then((previousWagers) => {
+  model({ round_id }) {
+    return this._getPreviousWagers(round_id).then((previousWagers) => {
       if (get(previousWagers, 'length')) {
         return get(previousWagers, 'firstObject');
       } else {
-        return this._createNewWager(movie_round_id);
+        return this._createNewWager(round_id);
       }
     });
   },
@@ -25,11 +26,11 @@ export default AuthenticatedRoute.extend({
     set(controller, 'wager', model);
   },
 
-  _createNewWager(movie_round_id) {
-    return get(this, 'store').findRecord('movie-round', movie_round_id).then((movieRound) => {
+  _createNewWager(round_id) {
+    return get(this, 'store').findRecord('round', round_id).then((round) => {
       return get(this, 'store').createRecord('wager', {
-        user: get(this, 'session').getUser(),
-        movieRound
+        user: get(this, 'session.currentUser'),
+        round
       });
     }).catch(() => {
       get(this, 'flashMessages').danger('Could not find that movie');
@@ -37,9 +38,8 @@ export default AuthenticatedRoute.extend({
     });
   },
 
-  _getPreviousWagers(movie_round_id) {
-    let user = get(this, 'session').getUser();
-    let user_id = get(user, 'id');
-    return get(this, 'store').query('wager', { user_id, movie_round_id });
+  _getPreviousWagers(round_id) {
+    let user_id = get(this, 'session.currentUser.id');
+    return get(this, 'store').query('wager', { user_id, round_id });
   }
 });

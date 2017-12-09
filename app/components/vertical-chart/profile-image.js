@@ -14,8 +14,7 @@ export default Component.extend({
   x: computed('index', function() {
     return get(this, 'index') % 2 == 0 ? 450 : 202;
   }),
-  y: computed('amount', function() {
-    let amount = get(this, 'amount');
+  y: computed('startingYPosition', 'height', function() {
     let halfHeight = get(this, 'height') / 2;
     return get(this, 'startingYPosition') - halfHeight;
   }),

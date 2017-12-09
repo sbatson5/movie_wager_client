@@ -8,12 +8,11 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('admin', function() {
-    this.route('edit-round', { path: 'edit-round/:movie_round_id' });
+    this.route('edit-round', { path: 'edit-round/:round_id' });
   });
-  this.route('twitter-auth');
   this.route('sign-in');
-  this.route('wager', { path: 'wager/:movie_round_id' });
-  this.route('round', { path: 'round/:movie_round_id' });
+  this.route('wager', { path: 'wager/:round_id' });
+  this.route('round', { path: 'round/:round_id' });
   this.route('leaderboard');
 });
 

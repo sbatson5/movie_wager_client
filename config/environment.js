@@ -22,6 +22,21 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    'ember-simple-auth': {
+      authenticationRoute: 'sign-in'
+    },
+
+    torii: {
+      sessionServiceName: 'session',
+      providers: {
+        'google-oauth2': {
+          apiKey: '345417739633-rv5u2i554m9k88ero9qehfi47qutdb1f.apps.googleusercontent.com',
+          redirectUri: 'http://localhost:4200/torii/redirect.html',
+          scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
+        }
+      }
     }
   };
 

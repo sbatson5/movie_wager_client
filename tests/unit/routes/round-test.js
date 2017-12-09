@@ -7,7 +7,7 @@ moduleFor('route:round', 'Unit | Route | round', {
 test('it properly sets up the controller', function(assert) {
   let route = this.subject();
   let hash = {
-    movieRound: 'foo',
+    round: 'foo',
     wagers: [
       { place: 3 },
       { place: 1 },
@@ -24,6 +24,6 @@ test('it properly sets up the controller', function(assert) {
     { place: 3 }
   ];
 
-  assert.equal(controller.movieRound, 'foo', 'movieRound is set on controller');
+  assert.equal(controller.round, 'foo', 'round is set on controller');
   assert.deepEqual(controller.wagers, expectedWagers, 'wagers are set and ordered');
 });

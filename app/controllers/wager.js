@@ -12,7 +12,7 @@ export default Controller.extend({
   actions: {
     placeWager() {
       let wager = get(this, 'wager');
-      let title = get(this, 'wager.movieRound.title');
+      let title = get(this, 'wager.round.title');
       let flashMessages = get(this, 'flashMessages');
 
       wager.save().then(() => {
