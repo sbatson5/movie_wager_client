@@ -1,19 +1,19 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { click, render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('movie-round-form', 'Integration | Component | movie round form', {
-  integration: true
-});
+module('Integration | Component | movie round form', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
+  test('it calls submit action', async function(assert) {
+    let submitAction = () => {
+      assert.ok(true, 'submit action is called');
+    };
 
-  let submitAction = () => {
-    assert.ok(true, 'submit action is called');
-  };
+    this.set('submitAction', submitAction);
+    await render(hbs`{{movie-round-form submitAction=submitAction}}`);
 
-  this.set('submitAction', submitAction);
-  this.render(hbs`{{movie-round-form submitAction=submitAction}}`);
-
-  let submitButton = this.$().find('button:contains("Submit")');
-  submitButton.click();
+    await click('button');
+  });
 });

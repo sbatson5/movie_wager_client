@@ -1,33 +1,29 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('nav-bar', 'Integration | Component | nav bar', {
-  integration: true
-});
+module('Integration | Component | nav bar', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders user information', function(assert) {
-  assert.expect(2);
-  let logout = function() {
-    assert.ok(true, 'logout function is called');
-  };
+  test('it renders user information', async function(assert) {
+    assert.expect(1);
 
-  let currentUser = {
-    name: 'Anita Funnyname',
-    profileImageUrl: 'http://funny.org/img.jpg'
-  };
+    let currentUser = {
+      name: 'Anita Funnyname',
+      profileImageUrl: 'http://funny.org/img.jpg'
+    };
 
-  this.set('currentUser', currentUser);
-  this.set('logout', logout);
+    this.set('currentUser', currentUser);
+    await render(hbs`{{nav-bar currentUser=currentUser}}`);
 
-  this.render(hbs`{{nav-bar currentUser=currentUser logout=logout}}`);
+    assert.equal(this.element.querySelectorAll('.nav-bar__item')[2].textContent.trim(), 'Logout', 'logout link is shown');
+  });
 
-  assert.ok(this.$().find('a:contains("Logout")').length, 'logout link is shown');
-  this.$().find('a:contains("Logout")').click();
-});
+  test('it renders sign in link without user', async function(assert) {
+    assert.expect(1);
 
-test('it renders sign in link without user', function(assert) {
-  assert.expect(1);
-
-  this.render(hbs`{{nav-bar}}`);
-  assert.ok(this.$().find('a:contains("Sign in")').length, 'sign in link is shown');
+    await render(hbs`{{nav-bar}}`);
+    assert.equal(this.element.querySelectorAll('.nav-bar__item')[2].textContent.trim(), 'Sign in', 'logout link is shown');
+  });
 });
