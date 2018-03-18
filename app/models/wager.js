@@ -8,7 +8,7 @@ const {
 
 export default Model.extend({
   user: belongsTo('user'),
-  movieRound: belongsTo('movie-round'),
+  round: belongsTo('round'),
 
   amount: attr('number'),
   place: attr('number')

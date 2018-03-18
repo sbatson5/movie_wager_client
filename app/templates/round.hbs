@@ -1,9 +1,9 @@
 <section class="form-container page-wrapper">
   <h2 class="form-header">Viewing wagers for</h2>
-  <h1>{{movieRound.title}}</h1>
+  <h1>{{round.title}}</h1>
 
-  {{#if movieRound.boxOfficeAmount}}
-    <h2 class="form-header">Final amount: {{format-currency movieRound.boxOfficeAmount}}</h2>
+  {{#if round.boxOfficeAmount}}
+    <h2 class="form-header">Final amount: {{format-currency round.boxOfficeAmount}}</h2>
     <h3>Top finishers:</h3>
   {{/if}}
 
@@ -21,6 +21,6 @@
   {{#if notEnoughWagers}}
     <h2>Not enough wagers to display chart</h2>
   {{else}}
-    {{vertical-movie-chart wagers=sortedWagers finalAmount=movieRound.boxOfficeAmount}}
+    {{vertical-movie-chart wagers=sortedWagers finalAmount=round.boxOfficeAmount}}
   {{/if}}
 </section>

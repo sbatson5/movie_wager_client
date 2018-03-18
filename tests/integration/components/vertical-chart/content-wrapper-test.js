@@ -5,20 +5,23 @@ moduleForComponent('vertical-chart/content-wrapper', 'Integration | Component | 
   integration: true
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+test('it sets up line information properly', function(assert) {
+  this.set('amount', 1000);
+  this.set('chartStartingPoint', 500);
+  this.set('chartRange', 2000);
+  this.set('chartHeight', 400);
 
-  this.render(hbs`{{vertical-chart/content-wrapper}}`);
+  this.render(hbs`{{vertical-chart/content-wrapper
+    amount=amount
+    chartStartingPoint=chartStartingPoint
+    chartRange=chartRange
+    chartHeight=chartHeight
+  }}`);
 
-  assert.equal(this.$().text().trim(), '');
+  let line = this.$().find('line:eq(0)');
 
-  // Template block usage:
-  this.render(hbs`
-    {{#vertical-chart/content-wrapper}}
-      template block text
-    {{/vertical-chart/content-wrapper}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(line.attr('y1'), '105');
+  assert.equal(line.attr('y2'), '105');
+  assert.equal(line.attr('x1'), '250');
+  assert.equal(line.attr('x2'), '350');
 });

@@ -1,17 +1,17 @@
 import Ember from 'ember';
-import AuthenticatedRoute from 'movie-wager-client/routes/authenticated';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-const { get, set } = Ember;
+const { Route, get, set } = Ember;
 
-export default AuthenticatedRoute.extend({
+export default Route.extend(AuthenticatedRouteMixin, {
   model() {
-    return get(this, 'store').createRecord('movie-round', {
+    return get(this, 'store').createRecord('round', {
       startDate: new Date(),
       endDate: new Date()
     });
   },
 
   setupController(controller, model) {
-    set(controller, 'movieRound', model);
+    set(controller, 'round', model);
   }
 });

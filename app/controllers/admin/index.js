@@ -12,7 +12,7 @@ export default Controller.extend({
   actions: {
     submit() {
       let flashMessages = this.get('flashMessages');
-      this.get('movieRound').save().then(() => {
+      this.get('round').save().then(() => {
         flashMessages.success('Movie Round Saved');
       }).catch((error) => {
         let errorMessage = get(error, 'errors.firstObject.detail');

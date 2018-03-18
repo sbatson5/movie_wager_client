@@ -8,15 +8,15 @@ const {
 } = Ember;
 
 export default Route.extend({
-  model({ movie_round_id }) {
+  model({ round_id }) {
     return hash({
-      movieRound: get(this, 'store').findRecord('movie-round', movie_round_id),
-      wagers: get(this, 'store').query('wager', { movie_round_id })
+      round: get(this, 'store').findRecord('round', round_id),
+      wagers: get(this, 'store').query('wager', { round_id })
     });
   },
 
   setupController(controller, hash) {
-    set(controller, 'movieRound', get(hash, 'movieRound'));
+    set(controller, 'round', get(hash, 'round'));
     set(controller, 'wagers', get(hash, 'wagers').sortBy('place'));
   }
 });

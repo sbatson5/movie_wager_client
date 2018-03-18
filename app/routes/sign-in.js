@@ -1,15 +1,5 @@
 import Ember from 'ember';
+import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
-export default Ember.Route.extend({
-  ajax: Ember.inject.service(),
-
-  actions: {
-    signIn() {
-      this.get('ajax').request('/api/v1/twitter-auth', {
-        method: 'POST'
-      }).then((twitterAuth) => {
-        window.location = twitterAuth.url;
-      });
-    }
-  }
+export default Ember.Route.extend(UnauthenticatedRouteMixin, {
 });

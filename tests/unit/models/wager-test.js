@@ -1,7 +1,7 @@
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('wager', 'Unit | Model | wager', {
-  needs: ['model:user', 'model:movie-round']
+  needs: ['model:user', 'model:round']
 });
 
 test('it exists', function(assert) {

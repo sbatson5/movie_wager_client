@@ -7,6 +7,6 @@ const {
 
 export default Route.extend({
   model() {
-    return get(this, 'store').findAll('movie-round');
+    return get(this, 'store').findAll('round');
   }
 });

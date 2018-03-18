@@ -4,7 +4,7 @@
   {{/flash-message}}
 {{/each}}
 
-{{nav-bar currentUser=currentUser logout=(route-action "logout")}}
+{{nav-bar currentUser=session.currentUser logout=(action "logout")}}
 
 <div class="body-wrapper">
   {{outlet}}
