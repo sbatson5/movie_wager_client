@@ -1,11 +1,6 @@
-import Ember from 'ember';
-
-const {
-  Controller,
-  computed,
-  computed: { lte },
-  get
-} = Ember;
+import Controller from '@ember/controller';
+import { computed, get } from '@ember/object';
+import { lte } from '@ember/object/computed';
 
 export default Controller.extend({
   notEnoughWagers: lte('sortedWagers.length', 1),

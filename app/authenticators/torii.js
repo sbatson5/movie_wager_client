@@ -1,13 +1,8 @@
 import Torii from 'ember-simple-auth/authenticators/torii';
-import Ember from 'ember';
+import { Promise } from 'rsvp';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
 import ENV from '../config/environment';
-
-const {
-  RSVP: { Promise },
-  get,
-  set,
-  inject: { service }
-} = Ember;
 
 export default Torii.extend({
   session: service('session'),

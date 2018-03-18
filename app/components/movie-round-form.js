@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { get } from '@ember/object';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'form',
   classNames: ['movie-round-form'],
   isNewRound: false,
 
   submit(event) {
     event.preventDefault();
-    let submitAction = this.get('submitAction');
+    let submitAction = get(this, 'submitAction');
     submitAction();
   }
 });

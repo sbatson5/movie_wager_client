@@ -1,10 +1,5 @@
-import Ember from 'ember';
-
-const {
-  Route,
-  get,
-  set
-} = Ember;
+import Route from '@ember/routing/route';
+import { get, set } from '@ember/object';
 
 export default Route.extend({
   model() {

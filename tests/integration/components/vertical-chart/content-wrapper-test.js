@@ -1,27 +1,29 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('vertical-chart/content-wrapper', 'Integration | Component | vertical chart/content wrapper', {
-  integration: true
-});
+module('Integration | Component | vertical chart/content wrapper', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it sets up line information properly', function(assert) {
-  this.set('amount', 1000);
-  this.set('chartStartingPoint', 500);
-  this.set('chartRange', 2000);
-  this.set('chartHeight', 400);
+  test('it sets up line information properly', async function(assert) {
+    this.set('amount', 1000);
+    this.set('chartStartingPoint', 500);
+    this.set('chartRange', 2000);
+    this.set('chartHeight', 400);
 
-  this.render(hbs`{{vertical-chart/content-wrapper
-    amount=amount
-    chartStartingPoint=chartStartingPoint
-    chartRange=chartRange
-    chartHeight=chartHeight
-  }}`);
+    await render(hbs`{{vertical-chart/content-wrapper
+      amount=amount
+      chartStartingPoint=chartStartingPoint
+      chartRange=chartRange
+      chartHeight=chartHeight
+    }}`);
 
-  let line = this.$().find('line:eq(0)');
+    let line = this.element.querySelector('line');
 
-  assert.equal(line.attr('y1'), '105');
-  assert.equal(line.attr('y2'), '105');
-  assert.equal(line.attr('x1'), '250');
-  assert.equal(line.attr('x2'), '350');
+    assert.equal(line.attributes['y1'].value, '105');
+    assert.equal(line.attributes['y2'].value, '105');
+    assert.equal(line.attributes['x1'].value, '250');
+    assert.equal(line.attributes['x2'].value, '350');
+  });
 });

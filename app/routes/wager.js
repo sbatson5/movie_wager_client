@@ -1,16 +1,11 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-const {
-  Route,
-  get,
-  inject: { service },
-  set
-} = Ember;
-
 export default Route.extend(AuthenticatedRouteMixin, {
-  flashMessages: service(),
-  session: service(),
+  flashMessages: service('flash-messages'),
+  session: service('session'),
 
   model({ round_id }) {
     return this._getPreviousWagers(round_id).then((previousWagers) => {

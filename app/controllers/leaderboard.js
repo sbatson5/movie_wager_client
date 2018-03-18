@@ -1,12 +1,7 @@
-import Ember from 'ember';
-
-const {
-  Controller,
-  computed,
-  computed: { mapBy },
-  get,
-  isEmpty
-} = Ember;
+import Controller from '@ember/controller';
+import { computed, get } from '@ember/object';
+import { mapBy } from '@ember/object/computed';
+import { isEmpty } from '@ember/utils';
 
 export default Controller.extend({
   userList: mapBy('wagers', 'user'),

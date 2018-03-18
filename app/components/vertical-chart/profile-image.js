@@ -1,11 +1,6 @@
-import Ember from 'ember';
-
-const {
-  Component,
-  computed,
-  computed: { alias },
-  get
-} = Ember;
+import Component from '@ember/component';
+import { computed, get } from '@ember/object';
+import { alias } from '@ember/object/computed';
 
 export default Component.extend({
   tagName: 'image',
