@@ -5,7 +5,7 @@
   <li class="nav-bar__item">
     {{link-to "Leaderboard" "leaderboard"}} {{fa-icon "trophy"}}
   </li>
-  {{#if currentUser}}
+  {{#if session.isAuthenticated}}
     <li class="nav-bar__item">
       <a href {{action "logoutUser"}}>Logout</a> {{fa-icon "sign-out"}}
     </li>

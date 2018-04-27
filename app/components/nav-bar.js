@@ -9,7 +9,8 @@ export default Component.extend({
 
   actions: {
     logoutUser() {
-      get(this, 'logout')();
+      get(this, 'session').logoutUser();
+      get(this, 'logoutTransition')();
     }
   }
 });

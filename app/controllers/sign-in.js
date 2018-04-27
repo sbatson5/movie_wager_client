@@ -1,13 +1,21 @@
 import Controller from '@ember/controller';
-import { get } from '@ember/object';
-import { inject as service } from '@ember/service';
+import ENV from '../config/environment';
 
 export default Controller.extend({
-  googleUserAuthenticator: service('google-user-authenticator'),
+  buildGoogUrl() {
+    let url = 'https://accounts.google.com/o/oauth2/auth',
+    type = 'response_type=code',
+    client = `client_id=${ENV.googleCredentials.apiKey}`,
+    redirect = `redirect_uri=${ENV.googleCredentials.redirectUri}`,
+    scope = `scope=${ENV.googleCredentials.scope}`;
+
+    let queryString = [type, client, redirect, scope].join('&');
+    return `${url}?${queryString}`
+  },
 
   actions: {
     authenticateSession() {
-      get(this, 'googleUserAuthenticator').authenticateGoogleUser();
+      window.location.href = this.buildGoogUrl();
     }
   }
 });
