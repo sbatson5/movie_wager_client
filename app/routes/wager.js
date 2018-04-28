@@ -1,11 +1,9 @@
 import Route from '@ember/routing/route';
 import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Route.extend(AuthenticatedRouteMixin, {
+export default Route.extend({
   flashMessages: service('flash-messages'),
-  session: service('session'),
 
   model({ round_id }) {
     return this._getPreviousWagers(round_id).then((previousWagers) => {

@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('wager', { path: 'wager/:round_id' });
   this.route('round', { path: 'round/:round_id' });
   this.route('leaderboard');
+  this.route('google-redirect');
 });
 
 export default Router;

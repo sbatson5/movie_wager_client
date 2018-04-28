@@ -2,8 +2,8 @@
   <div class="greeting">
     <div class="greeting__container">
       <h1 class="greeting__title">Movie Wager</h1>
-      {{#if username}}
-        <h3 class="greeting__welcome">Hi, {{username}}</h3>
+      {{#if session.currentUser}}
+        <h3 class="greeting__welcome">Hi, {{session.currentUser.givenName}}</h3>
       {{/if}}
       <p class="greeting__description">
         The game is simple: predict how much a movie will make in the box office
