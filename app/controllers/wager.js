@@ -14,8 +14,10 @@ export default Controller.extend({
       wager.save().then(() => {
         let amount = get(wager, 'amount');
         flashMessages.success(`Bet placed for ${title} at ${amount}`);
-      }).catch(() => {
-        flashMessages.danger('Unable to place your bet. Please try again!');
+      }).catch((errorObject) => {
+        let { errors } = errorObject;
+        let [mainError] = errors;
+        flashMessages.danger(`Unable to place your bet. ${mainError.title}`);
       });
     }
   }
