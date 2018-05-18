@@ -5,5 +5,8 @@ export default Model.extend({
   code: attr('string'),
   endDate: attr('date'),
   boxOfficeAmount: attr('number'),
-  title: attr('string')
+  title: attr('string'),
+  website: attr('string'),
+  plot: attr('string'),
+  poster: attr('string')
 });

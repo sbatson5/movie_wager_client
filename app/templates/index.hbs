@@ -15,11 +15,18 @@
 
 <section class="page-wrapper">
   {{#each model as |round|}}
-    <h1 class="movie-title">{{round.title}}</h1>
-    <div class="link-wrapper">
-      {{#link-to "round" round.id class="wager-links"}}
-        {{fa-icon "bar-chart"}} - View round
-      {{/link-to}}
-    </div>
+    <article class="round-card">
+      {{#if round.poster}}
+        <img src="{{round.poster}}">
+      {{/if}}
+      <div class="round-content">
+        <h1 class="movie-title">{{round.title}}</h1>
+        <div class="link-wrapper">
+          {{#link-to "round" round.id class="wager-links"}}
+            {{fa-icon "bar-chart"}} - View round
+          {{/link-to}}
+        </div>
+      </div>
+    </article>
   {{/each}}
 </section>

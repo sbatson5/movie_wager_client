@@ -11,7 +11,6 @@ Router.map(function() {
     this.route('edit-round', { path: 'edit-round/:round_id' });
   });
   this.route('sign-in');
-  this.route('wager', { path: 'wager/:round_id' });
   this.route('round', { path: 'round/:round_id' });
   this.route('leaderboard');
   this.route('google-redirect');
