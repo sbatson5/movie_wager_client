@@ -2,6 +2,7 @@
   display: block;
   font-family: $bangers;
   font-size: 35px;
+  margin-top: 0;
 }
 
 .splash-image {
@@ -40,6 +41,17 @@
   }
 }
 
+.round-card {
+  border: 1px solid;
+  display: flex;
+  margin: 0 auto;
+  max-width: 1000px;
+
+  .round-content {
+    width: 100%;
+  }
+}
+
 .link-wrapper {
   display: flex;
   margin: 0 auto;
@@ -56,6 +68,7 @@
     font-size: 20px;
     font-style: normal;
     margin: 10px auto;
+    min-width: 300px;
     padding: 19px 0;
     text-align: center;
     text-decoration: none;

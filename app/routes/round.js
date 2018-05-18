@@ -1,8 +1,11 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { get, set } from '@ember/object';
+import { get, setProperties } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
+  flashMessages: service('flash-messages'),
+
   model({ round_id }) {
     return RSVP.hash({
       round: get(this, 'store').findRecord('round', round_id),
@@ -11,7 +14,6 @@ export default Route.extend({
   },
 
   setupController(controller, hash) {
-    set(controller, 'round', get(hash, 'round'));
-    set(controller, 'wagers', get(hash, 'wagers').sortBy('place'));
+    setProperties(controller, hash);
   }
 });
