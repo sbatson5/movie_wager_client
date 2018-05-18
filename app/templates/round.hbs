@@ -1,4 +1,19 @@
 <section class="form-container page-wrapper">
+
+  {{#if session.currentUser}}
+    <h2 class="form-header">Your Wager</h2>
+    <form class="movie-round-form">
+      <label>
+        <span>Amount</span>
+        {{input class="input-text" type="number" value=userWager.amount}}
+      </label>
+
+      <button class="submit-button" type="submit" {{action "placeWager"}}>
+        Submit
+      </button>
+    </form>
+  {{/if}}
+
   <h2 class="form-header">Viewing wagers for</h2>
   <h1>{{round.title}}</h1>
 
