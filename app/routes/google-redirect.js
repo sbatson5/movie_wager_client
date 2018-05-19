@@ -41,6 +41,11 @@ export default Route.extend({
   afterModel() {
     get(this, 'store').queryRecord('google-user', {}).then((user) => {
       this.saveUser(user);
+    }).catch((errorOrUser) => {
+      if (errorOrUser.email) {
+        this.saveUser(errorOrUser);
+      }
+      get(this, 'flashMessages').danger('Issue with google log in');
     });
   },
 
