@@ -1,0 +1,14 @@
+<ul class="nav__menu">
+  {{#each rounds as |round|}}
+    <li class="nav__item">
+      <a href="#{{round.code}}" class="nav__link" data-scroll-to>
+        <div class="media">
+          <img src={{round.poster}} alt="" class="media__img">
+          <p class="media__content">
+            <strong>{{round.title}}</strong>
+          </p>
+        </div>
+      </a>
+    </li>
+  {{/each}}
+</ul>

@@ -1,0 +1,39 @@
+<ul class="nav__menu">
+  {{#if session.isAuthenticated}}
+    <a href class="nav__link" {{action "logoutUser"}}>
+      <div class="media">
+        <p class="media__content">
+          <strong>Logout</strong>
+        </p>
+      </div>
+    </a>
+  {{else}}
+    <li class="nav__item">
+      {{#link-to "sign-in" class="nav__link"}}
+        <div class="media">
+          <p class="media__content">
+            <strong>Sign In</strong>
+          </p>
+        </div>
+      {{/link-to}}
+    </li>
+  {{/if}}
+  <li class="nav__item">
+    {{#link-to "index" class="nav__link"}}
+      <div class="media">
+        <p class="media__content">
+          <strong>Home</strong>
+        </p>
+      </div>
+    {{/link-to}}
+  </li>
+  <li class="nav__item">
+    {{#link-to "leaderboard" class="nav__link"}}
+      <div class="media">
+        <p class="media__content">
+          <strong>Leaderboard</strong>
+        </p>
+      </div>
+    {{/link-to}}
+  </li>
+</ul>

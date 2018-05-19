@@ -1,0 +1,42 @@
+// ============= NAVIGATION ==============
+
+.nav {
+  -webkit-overflow-scrolling: touch;
+  border-right: 1px solid $white-fade;
+  display: none;
+  overflow-y: auto;
+
+  &__item {
+    &:not(:last-child) {
+      border-bottom: 1px solid $white-fade;
+    }
+  }
+
+  &__link {
+    color: $white;
+    display: block;
+    font-weight: 200;
+
+    &:hover,
+    &:focus {
+      background-color: $white-fade-clear;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    display: block;
+    grid-column: 1 / 2;
+  }
+}
+
+.nav__mobile--show {
+  @media screen and (max-width: 1024px) {
+    background-color: $gray-dark;
+    display: block;
+    height: 110vh;
+    left: 0;
+    position: absolute;
+    top: 72px; // height of the header
+    z-index: 5;
+  }
+}

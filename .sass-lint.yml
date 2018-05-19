@@ -7,7 +7,9 @@ rules:
     - 2
     -
       style: double
-  no-color-literals: true
+  no-color-literals:
+    - 0
+    -
   no-duplicate-properties:
     - 2
     -

@@ -1,5 +1,6 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
+import { computed, get } from '@ember/object';
 
 export default Model.extend({
   code: attr('string'),
@@ -8,5 +9,22 @@ export default Model.extend({
   title: attr('string'),
   website: attr('string'),
   plot: attr('string'),
-  poster: attr('string')
+  poster: attr('string'),
+  highestWager: attr('number'),
+  lowestWager: attr('number'),
+  numberOfWagers: attr('number'),
+
+  largePoster: computed('poster', function() {
+    let poster = get(this, 'poster') || '';
+    return poster.replace('X300.jpg', 'X500.jpg');
+  }),
+
+  formattedEndDate: computed('endDate', function() {
+    let endDate = get(this, 'endDate');
+    if (!endDate) {
+      return '';
+    }
+
+    return `${endDate.getMonth() + 1}/${endDate.getDate()}/${endDate.getFullYear()}`;
+  })
 });
