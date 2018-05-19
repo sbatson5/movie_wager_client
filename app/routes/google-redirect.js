@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { get, set } from '@ember/object';
 import ENV from '../config/environment';
 import { isEmpty } from '@ember/utils';
+import config from 'movie-wager-client/config/environment';
 
 export default Route.extend({
   ajax: service('ajax'),
@@ -18,7 +19,7 @@ export default Route.extend({
     if (isEmpty(code)) {
       return;
     }
-    return get(this, 'ajax').request('/api/auth', {
+    return get(this, 'ajax').request(`${config.apiUri}/api/auth`, {
       type: 'POST',
       xhrFields: {
         withCredentials: true
@@ -44,7 +45,7 @@ export default Route.extend({
   },
 
   saveUser(user) {
-    return get(this, 'ajax').request('/api/auth', {
+    return get(this, 'ajax').request(`${config.apiUri}/api/auth`, {
       type: 'POST',
       xhrFields: {
         withCredentials: true

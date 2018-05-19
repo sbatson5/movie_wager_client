@@ -1,12 +1,13 @@
 import Service, { inject as service } from '@ember/service';
 import { get, set } from '@ember/object';
+import config from 'movie-wager-client/config/environment';
 
 export default Service.extend({
   ajax: service('ajax'),
   store: service('store'),
 
   getCurrentSession() {
-    return get(this, 'ajax').request('/api/session', {
+    return get(this, 'ajax').request(`${config.apiUri}/api/session`, {
       type: 'GET',
       xhrFields: {
         withCredentials: true
@@ -24,7 +25,7 @@ export default Service.extend({
   logoutUser() {
     set(this, 'isAuthenticated', false);
     set(this, 'currentUser', null);
-    return get(this, 'ajax').request('/api/session', {
+    return get(this, 'ajax').request(`${config.apiUri}/api/session`, {
       type: 'DELETE',
       xhrFields: {
         withCredentials: true
