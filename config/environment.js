@@ -56,7 +56,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    googleCredentials['redirectUri'] = 'https://moviewager.herokuapp.com/google-redirect';
+    ENV.googleCredentials['redirectUri'] = 'https://moviewager.herokuapp.com/google-redirect';
     ENV.apiUri = 'https://moviewagerbackend.herokuapp.com';
   }
 
