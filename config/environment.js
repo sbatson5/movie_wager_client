@@ -6,6 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
+    apiUri: 'http://localhost:4000',
 
     flashMessageDefaults: {
       extendedTimeout: 400,
@@ -14,19 +15,13 @@ module.exports = function(environment) {
 
     EmberENV: {
       FEATURES: {
-        // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
       },
       EXTEND_PROTOTYPES: {
-        // Prevent Ember Data from overriding Date.parse.
         Date: false
       }
     },
 
-    APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
-    },
+    APP: {},
 
     'ember-simple-auth': {
       authenticationRoute: 'sign-in'
@@ -57,10 +52,12 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+    delete ENV.apiUri;
   }
 
   if (environment === 'production') {
-    googleCredentials['redirectUri'] = 'https://moviewager.herokuapp.com/google-redirect'
+    googleCredentials['redirectUri'] = 'https://moviewager.herokuapp.com/google-redirect';
+    ENV.apiUri = 'https://moviewagerbackend.herokuapp.com';
   }
 
   return ENV;
