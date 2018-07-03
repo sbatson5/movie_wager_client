@@ -21,7 +21,6 @@ export default Route.extend({
     }
     return get(this, 'ajax').request(`${config.apiUri}/api/auth`, {
       type: 'POST',
-      credentials: 'same-origin',
       xhrFields: {
         withCredentials: true
       },
@@ -53,7 +52,6 @@ export default Route.extend({
   saveUser(user) {
     return get(this, 'ajax').request(`${config.apiUri}/api/auth`, {
       type: 'POST',
-      credentials: 'same-origin',
       xhrFields: {
         withCredentials: true
       },
