@@ -40,7 +40,6 @@ export default Route.extend({
 
   afterModel() {
     get(this, 'store').queryRecord('google-user', {}).then((user) => {
-      console.log('afterModel', user);
       this.saveUser(user);
     }).catch((errorOrUser) => {
       if (errorOrUser.email) {
@@ -51,7 +50,6 @@ export default Route.extend({
   },
 
   saveUser(user) {
-    console.log('save call', user);
     return get(this, 'ajax').request(`${config.apiUri}/api/auth`, {
       type: 'POST',
       xhrFields: {
