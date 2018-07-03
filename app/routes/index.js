@@ -3,6 +3,8 @@ import { get } from '@ember/object';
 
 export default Route.extend({
   model() {
-    return get(this, 'store').findAll('round');
+    return get(this, 'store').findAll('round').then((rounds) => {
+      return rounds.sortBy('endDate').reverse();
+    });
   }
 });
