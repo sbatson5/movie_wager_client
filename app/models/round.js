@@ -16,7 +16,11 @@ export default Model.extend({
 
   largePoster: computed('poster', function() {
     let poster = get(this, 'poster') || '';
-    return poster.replace('X300.jpg', 'X500.jpg');
+    if (poster) {
+      return poster.replace('X300.jpg', 'X500.jpg');
+    } else {
+      return '/images/movie-bg.jpg';
+    }
   }),
 
   formattedEndDate: computed('endDate', function() {

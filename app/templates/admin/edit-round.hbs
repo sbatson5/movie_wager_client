@@ -1,7 +1,14 @@
-<h1>Movie Round Editor</h1>
+{{workview-nav}}
 
-<section class="form-container">
-  {{movie-round-form
-    round=round
-    submitAction=(action "submit")}}
-</section>
+<main class="main">
+  <section class="form-container">
+    <h1>Movie Round Creator</h1>
+    {{#if session.isAuthenticated}}
+      {{movie-round-form
+        round=round
+        submitAction=(action "submit")}}
+    {{else}}
+      You need to be logged in as an admin.
+    {{/if}}
+  </section>
+</main>
