@@ -11,8 +11,7 @@ export default Service.extend({
       type: 'GET',
       xhrFields: {
         withCredentials: true
-      },
-      credentials: 'same-origin'
+      }
     }).then((userJSON) => {
       let store = get(this, 'store');
       store.pushPayload(userJSON);
@@ -30,8 +29,7 @@ export default Service.extend({
       type: 'DELETE',
       xhrFields: {
         withCredentials: true
-      },
-      credentials: 'same-origin'
+      }
     });
   }
 });

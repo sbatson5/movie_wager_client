@@ -1,14 +1,14 @@
 <ul class="nav__menu">
-  {{#if session.isAuthenticated}}
-    <a href class="nav__link" {{action "logoutUser"}}>
-      <div class="media">
-        <p class="media__content">
-          <strong>Logout</strong>
-        </p>
-      </div>
-    </a>
-  {{else}}
-    <li class="nav__item">
+  <li class="nav__item">
+    {{#if session.isAuthenticated}}
+      <a href class="nav__link" {{action "logoutUser"}}>
+        <div class="media">
+          <p class="media__content">
+            <strong>Logout</strong>
+          </p>
+        </div>
+      </a>
+    {{else}}
       {{#link-to "sign-in" class="nav__link"}}
         <div class="media">
           <p class="media__content">
@@ -16,8 +16,8 @@
           </p>
         </div>
       {{/link-to}}
-    </li>
-  {{/if}}
+    {{/if}}
+  </li>
   <li class="nav__item">
     {{#link-to "index" class="nav__link"}}
       <div class="media">
