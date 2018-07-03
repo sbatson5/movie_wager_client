@@ -1,32 +1,63 @@
-<section class="splash-image">
-  <div class="greeting">
-    <div class="greeting__container">
-      <h1 class="greeting__title">Movie Wager</h1>
-      {{#if session.currentUser}}
-        <h3 class="greeting__welcome">Hi, {{session.currentUser.givenName}}</h3>
-      {{/if}}
-      <p class="greeting__description">
-        The game is simple: predict how much a movie will make in the box office
-        on its opening weekend. Then check back on Monday to see if you won!
-      </p>
-    </div>
-  </div>
-</section>
+{{side-nav rounds=model}}
 
-<section class="page-wrapper">
+<main class="main">
   {{#each model as |round|}}
-    <article class="round-card">
-      {{#if round.poster}}
-        <img src="{{round.poster}}">
-      {{/if}}
-      <div class="round-content">
-        <h1 class="movie-title">{{round.title}}</h1>
-        <div class="link-wrapper">
-          {{#link-to "round" round.id class="wager-links"}}
-            {{fa-icon "bar-chart"}} - View round
-          {{/link-to}}
+    <article class="section" id={{round.code}} data-section>
+      <header class="section__header" style="background-image: url('{{round.largePoster}}');">
+        <div class="section__controls">
+          <div class="user">
+            <img src="assets/images/me.jpg" class="user__img" alt="" />
+            <span class="user__name">Winner</span>
+          </div>
         </div>
+      </header>
+      <div class="section__content">
+        <ul class="boxgrid">
+          <li class="boxgrid__item boxgrid__item--wide">
+            {{#link-to "round" round.id class="box box--title-info"}}
+              <p>
+                <span class="text--large">{{round.title}}</span>
+                <br />Opening Night {{round.formattedEndDate}}
+              </p>
+            {{/link-to}}
+          </li>
+          <li class="boxgrid__item boxgrid__item--wide">
+            <a href="#" class="box box--final-amount">
+              <p>
+                <span class="text--large">Box Office Amount</span>
+                <br />{{if round.boxOfficeAmount (format-currency round.boxOfficeAmount) 'N/A'}}
+              </p>
+            </a>
+          </li>
+          <li class="boxgrid__item boxgrid__item--push">
+            <a href={{round.website}} class="box box--image">
+              <img src={{round.poster}} class="box__img" alt="" />
+            </a>
+          </li>
+          <li class="boxgrid__item">
+            <a href="#" class="box box--number-of-wagers">
+              <p><span class="text--large">{{round.numberOfWagers}}</span><br />Wagers placed</p>
+            </a>
+          </li>
+          <li class="boxgrid__item boxgrid__item--push">
+            <a href="#" class="box box--title-info">
+              <p>
+                <span class="text--large">Highest</span>
+                <br />{{if round.highestWager (format-currency round.highestWager) 'N/A'}}
+              </p>
+            </a>
+          </li>
+          <li class="boxgrid__item">
+            <a href="#" class="box box--lowest-wager">
+              <p>
+                <span class="text--large">Lowest</span>
+                <br />{{if round.lowestWager (format-currency round.lowestWager) 'N/A'}}
+              </p>
+            </a>
+          </li>
+        </ul>
       </div>
     </article>
+
   {{/each}}
-</section>
+</main>

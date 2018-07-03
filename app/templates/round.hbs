@@ -1,41 +1,42 @@
-<section class="form-container page-wrapper">
+{{workview-nav isShown=false}}
 
-  {{#if session.currentUser}}
-    <h2 class="form-header">Your Wager</h2>
-    <form class="movie-round-form">
-      <label>
-        <span>Amount</span>
-        {{input class="input-text" type="number" value=userWager.amount}}
-      </label>
+<main class="main">
+  <article class="section section--round" data-section>
+    <div>
+      {{#if session.currentUser}}
+        <h2 class="form-header">Your Wager</h2>
+        <form class="movie-round-form">
+          <label>
+            <span>Amount</span>
+            {{input class="input-text" type="number" value=userWager.amount}}
+          </label>
 
-      <button class="submit-button" type="submit" {{action "placeWager"}}>
-        Submit
-      </button>
-    </form>
-  {{/if}}
+          <button class="submit-button" type="submit" {{action "placeWager"}}>
+            Submit
+          </button>
+        </form>
+      {{/if}}
 
-  <h2 class="form-header">Viewing wagers for</h2>
-  <h1>{{round.title}}</h1>
+      <h1>{{round.title}}</h1>
 
-  {{#if round.boxOfficeAmount}}
-    <h2 class="form-header">Final amount: {{format-currency round.boxOfficeAmount}}</h2>
-    <h3>Top finishers:</h3>
-  {{/if}}
+      {{#if round.boxOfficeAmount}}
+        <h2 class="form-header">Final amount: {{format-currency round.boxOfficeAmount}}</h2>
+        <h3>Top finishers:</h3>
+      {{/if}}
 
-  <div class="wager-wrapper">
-    {{#each wagersByPlaceOrAmount as |wager|}}
-      <div class="wager">
-        {{#if wager.place}}
-          {{wager.place}}.
-        {{/if}}
-        {{format-currency wager.amount}} by {{wager.user.name}}
+      <div class="wager-wrapper">
+        {{#each wagersByPlaceOrAmount as |wager|}}
+          <div class="wager">
+            {{#if wager.place}}
+              {{wager.place}}.
+            {{/if}}
+            {{format-currency wager.amount}} by {{wager.user.name}}
+          </div>
+        {{/each}}
       </div>
-    {{/each}}
-  </div>
-
-  {{!-- {{#if notEnoughWagers}}
-    <h2>Not enough wagers to display chart</h2>
-  {{else}}
-    {{vertical-movie-chart wagers=sortedWagers finalAmount=round.boxOfficeAmount}}
-  {{/if}} --}}
-</section>
+    </div>
+    <div class="section--round__image-wrapper">
+      <img src={{round.poster}}>
+    </div>
+  </article>
+</main>

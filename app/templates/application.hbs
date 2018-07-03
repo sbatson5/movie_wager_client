@@ -4,8 +4,25 @@
   {{/flash-message}}
 {{/each}}
 
-{{nav-bar logoutTransition=(action "logoutTransition")}}
-
-<div class="body-wrapper">
+<div class="app">
+  {{header-bar}}
   {{outlet}}
+  <footer class="footer">
+    <p>
+      design inspired by
+      <a href="https://dribbble.com/shots/2652364-Digital-Walls" target="_blank" rel="noopener noreferrer">
+        Cosmin Capitanu
+      </a>
+    </p>
+
+    <p class="footer__more">
+      <a href="https://github.com/sbatson5/movie_wager_backend" target="_blank" rel="noopener noreferrer">
+        View Backend Source
+      </a>
+      &nbsp;&middot;&nbsp;
+      <a href="https://github.com/sbatson5/movie_wager_backend" target="_blank" rel="noopener noreferrer">
+        View Frontend Source
+      </a>
+    </p>
+  </footer>
 </div>

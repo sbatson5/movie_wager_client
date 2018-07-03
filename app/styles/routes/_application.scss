@@ -1,7 +1,350 @@
-.ember-application {
-  margin: 0;
+
+// ============= GENERAL CSS ==============
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.body-wrapper {
-  margin-top: 55px;
+body {
+  background-color: $gray-dark;
+  color: $white;
+  font-family: "Montserrat", "Roboto", "Droid Sans", "Helvetica Neue", sans-serif;
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+ul,
+ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+// ============= MAIN LAYOUT ==============
+
+.app {
+  display: grid;
+  grid-template-columns: $nav-width 1fr;
+  grid-template-rows: $header-height 1fr $footer-height;
+  height: 100vh;
+}
+
+.header,
+.footer {
+  color: $gray;
+  font-size: .75rem;
+  font-weight: 200;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.header {
+  border-bottom: 1px solid $white-fade;
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: space-between;
+  padding: 0 $default-spacing;
+
+  &__left,
+  &__right {
+    align-items: center;
+    display: flex;
+  }
+}
+
+.main {
+  -webkit-overflow-scrolling: touch;
+  grid-column: 1 / -1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: $default-spacing;
+  perspective: 1px;
+
+  scroll-snap-destination: 0% 100%;
+  scroll-snap-points-y: repeat(100%);
+  scroll-snap-type: block proximity;
+
+  @media screen and (min-width: 1024px) {
+    grid-column: 2 / -1;
+  }
+}
+
+.footer {
+  align-items: center;
+  border-top: 1px solid $white-fade;
+  display: flex;
+  grid-column: 1 / -1;
+  padding: 0 $default-spacing;
+
+  p {
+    margin-right: 1rem;
+  }
+
+  a {
+    color: $white;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  &__more {
+    display: none;
+    margin-left: auto;
+    margin-right: 0;
+
+    @media screen and (min-width: 768px) {
+      display: block;
+    }
+  }
+}
+
+
+
+// ============= PAGE SECTIONS ==============
+
+.section {
+  margin-bottom: $section-height / 2;
+  min-height: calc(100vh - #{$header-height} - #{$footer-height});
+  padding-top: ($section-height / 2) + 50;
+  position: relative;
+  scroll-snap-align: start;
+  transform-style: preserve-3d;
+
+  &__header {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: $border-radius;
+    height: 500px;
+    left: 0;
+    padding: $default-spacing;
+    position: absolute;
+    right: 0;
+    text-shadow: 0 0 20px $quarter-clear;
+    top: 50px;
+
+    &::after {
+      background: linear-gradient(to bottom, $clear 0%, $half-clear 100%);
+      bottom: 0;
+      content: "";
+      display: block;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 50%;
+    }
+  }
+
+  &__title {
+    font-size: 3.5rem;
+    font-weight: 200;
+    line-height: 1;
+    margin-bottom: .5rem;
+  }
+
+  &__subtitle {
+    font-size: 1.5rem;
+  }
+
+  &__controls {
+    align-items: center;
+    display: flex;
+    left: 0;
+    padding: 0 $default-spacing;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateY(-50%);
+  }
+
+  &__content {
+    padding: 0 $default-spacing / 2;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-bottom: $section-height * 1.5;
+
+    &__header {
+      transform: translateZ(-1px) scale(1.9);
+    }
+
+    &__content {
+      padding: 0;
+      transform: translateZ(0);
+    }
+  }
+}
+
+.section--round {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+  padding-top: 0;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+
+    .section--round__image-wrapper {
+      margin-top: 100px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// ============= CONTENT BOX GRID ==============
+
+.boxgrid {
+  display: grid;
+  grid-auto-rows: minmax(150px, auto);
+  grid-gap: 2rem .5rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+  &__item {
+    display: flex;
+
+    &--wide {
+      grid-column: span 2;
+    }
+
+    &--push {
+      @media screen and (min-width: 1280px) {
+        grid-column: span 2;
+        padding-left: 50%;
+      }
+    }
+  }
+}
+
+// ============= CONTENT BOX ==============
+
+.box {
+  border-radius: $border-radius;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, .3), 0 15px 12px rgba(0, 0, 0, .22);
+  color: $white;
+  display: flex;
+  filter: brightness(100%);
+  flex: 1 0 0;
+  font-size: .875rem;
+  padding: $default-spacing;
+  position: relative;
+  transform: scale(1);
+  transition: initial .25s ease;
+
+  &:hover,
+  &:focus {
+    filter: brightness(110%);
+    transform: scale(1.07);
+    z-index: 10;
+  }
+
+  &--title-info {
+    background-color: $teal;
+  }
+
+  &--final-amount {
+    background-color: $black;
+  }
+
+  &--number-of-wagers {
+    background-color: $lightblue;
+  }
+
+  &--lowest-wager {
+    background-color: $indigo;
+  }
+
+  &--image {
+    padding: 0;
+  }
+
+  &__img {
+    border-radius: $border-radius;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    width: 100%;
+  }
+}
+
+// ============= MISC UTILITIES ==============
+
+.text--large {
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+.media {
+  align-items: center;
+  display: flex;
+  padding: $default-spacing;
+
+  &__img {
+    border-radius: $border-radius / 2;
+    height: 60px;
+    margin-right: $default-spacing / 2;
+    object-fit: cover;
+    object-position: center center;
+    width: 60px;
+  }
+
+  &__content {
+    margin: 0;
+  }
+}
+
+.user {
+  margin-left: auto;
+  padding-top: 2rem;
+  text-align: center;
+
+  &__name {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 200;
+  }
+
+  &__img {
+    border-radius: 50%;
+    box-shadow: 0 0 38px rgba(0, 0, 0, .3);
+    height: 100px;
+    margin-bottom: .5rem;
+    width: 100px;
+  }
+}
+
+button {
+  &:focus {
+    border: 0;
+    outline: 0;
+  }
+}
+
+.menu-toggle {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: none;
+  @media screen and (max-width: 1024px) {
+    display: block;
+  }
 }

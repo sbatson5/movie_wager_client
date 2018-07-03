@@ -1,29 +1,22 @@
-// Colors
-// --------------------
+$header-height: 4rem;
+$section-height: 500px;
+$nav-width: 20%;
+$footer-height: 4rem;
+$border-radius: .5rem;
+$default-spacing: 2rem;
 
-$white: #fff;
-$lightest-grey: #f6f6f6;
-$light-grey: #ddd;
-$med-grey: #999;
-$darker-grey: #585858;
-$darkest-grey: #2e2e2e;
 $black: #000;
-$black-transparent: rgba(0, 0, 0, .6);
+$white: #fff;
+$white-fade: rgba($white, .1);
+$white-fade-clear: rgba($white, .035);
+$gray-dark: #121519;
+$gray: #a0a0a0;
+$gray-light: #f3f3f3;
 
-$lighter-blue: #afcfd6;
-$light-blue: #60a0ae;
-$dark-blue: #113942;
-$darkest-blue: #0a2126;
+$indigo: #6c73dc;
+$teal: #89cdce;
+$lightblue: #66aee5;
 
-$red: #f64b35;
-
-$mint: #a6ffd4;
-
-$color-error: $red;
-
-// Fonts
-// --------------------
-
-$bangers: "Bangers";
-$helvetica: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-$molengo: "Molengo", sans-serif;
+$clear: rgba(0, 0, 0, 0);
+$half-clear: rgba(0, 0, 0, .5);
+$quarter-clear: rgba(0, 0, 0, .25);

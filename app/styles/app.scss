@@ -4,14 +4,7 @@
 
 @import "base/variables";
 
-// routes
-@import "routes/admin";
-@import "routes/application";
-@import "routes/index";
-@import "routes/leaderboard";
-@import "routes/pages";
-@import "routes/round";
+@import "components/side-nav";
 
-// components
-@import "components/flash-message";
-@import "components/nav-bar";
+// routes
+@import "routes/application";

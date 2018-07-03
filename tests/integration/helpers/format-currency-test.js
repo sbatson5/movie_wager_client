@@ -11,14 +11,14 @@ module('Integration | Helper | format-currency', function(hooks) {
 
     await render(hbs`{{format-currency inputValue}}`);
 
-    assert.equal(this.element.textContent.trim(), '$1,234.00');
+    assert.equal(this.element.textContent.trim(), '$1,234');
   });
 
-  test('it formats currency', async function(assert) {
-    this.set('inputValue', '12321312212312.42');
+  test('it formats currency with long values', async function(assert) {
+    this.set('inputValue', '12321312212312');
 
     await render(hbs`{{format-currency inputValue}}`);
 
-    assert.equal(this.element.textContent.trim(), '$12,321,312,212,312.42');
+    assert.equal(this.element.textContent.trim(), '$12,321,312,212,312');
   });
 });
