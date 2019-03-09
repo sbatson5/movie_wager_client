@@ -1,57 +1,7 @@
-{{side-nav rounds=model}}
+<SideNav @rounds={{model}} />
 
 <main class="main">
   {{#each model as |round|}}
-    <article class="section" id={{round.code}} data-section>
-      <header class="section__header" style="background-image: url('{{round.largePoster}}');">
-      </header>
-      <div class="section__content">
-        <ul class="boxgrid">
-          <li class="boxgrid__item boxgrid__item--wide">
-            {{#link-to "round" round.id class="box box--title-info"}}
-              <p>
-                <span class="text--large">{{round.title}}</span>
-                <br />Opening Night {{round.formattedEndDate}}
-              </p>
-            {{/link-to}}
-          </li>
-          <li class="boxgrid__item boxgrid__item--wide">
-            <a href="#" class="box box--final-amount">
-              <p>
-                <span class="text--large">Box Office Amount</span>
-                <br />{{if round.boxOfficeAmount (format-currency round.boxOfficeAmount) 'N/A'}}
-              </p>
-            </a>
-          </li>
-          <li class="boxgrid__item boxgrid__item--push">
-            <a href={{round.website}} class="box box--image">
-              <img src={{round.poster}} class="box__img" alt="" />
-            </a>
-          </li>
-          <li class="boxgrid__item">
-            <a href="#" class="box box--number-of-wagers">
-              <p><span class="text--large">{{round.numberOfWagers}}</span><br />Wagers placed</p>
-            </a>
-          </li>
-          <li class="boxgrid__item boxgrid__item--push">
-            <a href="#" class="box box--title-info">
-              <p>
-                <span class="text--large">Highest</span>
-                <br />{{if round.highestWager (format-currency round.highestWager) 'N/A'}}
-              </p>
-            </a>
-          </li>
-          <li class="boxgrid__item">
-            <a href="#" class="box box--lowest-wager">
-              <p>
-                <span class="text--large">Lowest</span>
-                <br />{{if round.lowestWager (format-currency round.lowestWager) 'N/A'}}
-              </p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </article>
-
+    <MovieInformation @round={{round}} class="section" id={{round.code}} data-section />
   {{/each}}
 </main>
